@@ -1,14 +1,13 @@
-import random
 import sys
-
+import random
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
-from UI import Ui_MainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from UI import Ui_Form
 
 SCREEN_SIZE = [680, 480]
 
 
-class Example(QMainWindow, Ui_MainWindow):
+class MyWindow(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -19,7 +18,7 @@ class Example(QMainWindow, Ui_MainWindow):
     def draw(self):
         self.figure = 'circle'
         self.size = random.randint(10, 100)
-        self.color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))  # 'yellow'
+        self.color = (255, 255, 0)  # 'yellow'
         self.flag = True
         self.update()
 
@@ -42,8 +41,6 @@ def except_hook(cls, exception, traceback):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     sys.excepthook = except_hook
-    ex = Example()
+    ex = MyWindow()
     ex.show()
     sys.exit(app.exec_())
-
-print('aaa')
